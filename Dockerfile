@@ -2,11 +2,11 @@
 # GitLab CI: Android
 # Version: 1.0.0
 #
-# https://hub.docker.com/r/sakarsh/gitlab-ci-android-akarsh-seggemu/
+# https://hub.docker.com/r/mightymalakai33/gitlab-ci-bowling-stats-docker/
 #
 
 FROM ubuntu:18.04
-MAINTAINER Akarsh Seggemu <sakarshkumar@gmail.com>
+MAINTAINER Andrew Auclair <mightymalakai33@gmail.com>
 
 ENV VERSION_SDK_TOOLS "4333796"
 
