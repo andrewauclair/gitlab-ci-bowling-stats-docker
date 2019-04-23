@@ -43,7 +43,7 @@ RUN curl -s https://dl.google.com/android/repository/sdk-tools-linux-${VERSION_S
 # Accept licenses before installing components, no need to echo y for each component
 # License is valid for all the standard components in versions installed from this file
 # Non-standard components: MIPS system images, preview versions, GDK (Google Glass) and Android Google TV require separate licenses, not accepted there
-RUN yes | sdkmanager --licenses
+RUN yes | ${ANDROID_HOME}/tools/bin/sdkmanager --licenses
 
 # Platform tools
 # RUN sdkmanager "emulator" "tools" "platform-tools"
