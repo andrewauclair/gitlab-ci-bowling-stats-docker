@@ -61,5 +61,3 @@ RUN apt-get install -y unzip
 RUN unzip gradle-5.1.1-bin.zip
 ENV GRADLE_HOME=${PWD}/gradle-5.1.1
 ENV PATH=$PATH:${GRADLE_HOME}/bin
-RUN /bin/bash -c "source ${HOME}/.bashrc"
-RUN gradle test jar
