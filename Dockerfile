@@ -55,3 +55,11 @@ RUN mkdir -p /root/.android && \
 
 RUN yes | while read -r package; do PACKAGES="${PACKAGES}${package} "; done < /sdk/packages.txt && \
     ${ANDROID_HOME}/tools/bin/sdkmanager ${PACKAGES}
+    
+RUN curl -L https://services.gradle.org/distributions/gradle-5.1.1-bin.zip -o gradle-5.1.1-bin.zip
+RUN apt-get install -y unzip
+RUN unzip gradle-5.1.1-bin.zip
+ENV GRADLE_HOME=/app/gradle-5.1.1
+ENV PATH=$PATH:$GRADLE_HOME/bin
+RUN /bin/bash -c "source $HOME/.bashrc"
+RUN gradle test jar
