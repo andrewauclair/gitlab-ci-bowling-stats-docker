@@ -59,7 +59,7 @@ RUN mkdir -p /root/.android && \
 RUN yes | while read -r package; do PACKAGES="${PACKAGES}${package} "; done < /sdk/packages.txt && \
     ${ANDROID_HOME}/tools/bin/sdkmanager ${PACKAGES}
     
-RUN curl -s https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip > /gradle.zip && \
+RUN curl -s -S -L https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip > /gradle.zip && \
     unzip /gradle.zip -d /gradle && \
     rm -v /gradle.zip
    
