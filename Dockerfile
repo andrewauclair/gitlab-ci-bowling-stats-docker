@@ -9,9 +9,12 @@ FROM ubuntu:18.04
 MAINTAINER Andrew Auclair <mightymalakai33@gmail.com>
 
 ENV VERSION_SDK_TOOLS "4333796"
+ENV GRADLE_VERSION "5.1.1"
 
 ENV ANDROID_HOME "/sdk"
-ENV PATH "$PATH:${ANDROID_HOME}/tools"
+ENV GRADLE_HOME "/gradle"
+
+ENV PATH "$PATH:${ANDROID_HOME}/tools:${GRADLE_HOME}/bin"
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get -qq update && \
@@ -56,8 +59,8 @@ RUN mkdir -p /root/.android && \
 RUN yes | while read -r package; do PACKAGES="${PACKAGES}${package} "; done < /sdk/packages.txt && \
     ${ANDROID_HOME}/tools/bin/sdkmanager ${PACKAGES}
     
-RUN curl -L https://services.gradle.org/distributions/gradle-5.1.1-bin.zip -o gradle-5.1.1-bin.zip
-RUN apt-get install -y unzip
-RUN unzip gradle-5.1.1-bin.zip
-ENV GRADLE_HOME=${PWD}/gradle-5.1.1
-ENV PATH=$PATH:${GRADLE_HOME}/bin
+RUN curl -s https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip > /gradle.zip && \
+    unzip /gradle.zip -d /gradle && \
+    rm -v /gradle.zip
+   
+   
